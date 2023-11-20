@@ -1,6 +1,6 @@
 const fs = require('fs');
 const util = require('util');
-const uuidv1 = require('uuid');
+const uuid = require('uuid');
 
 const readDislay = util.promisify(fs.readFile);
 const writeDisplay = util.promisify(fs.writeFile);
@@ -29,7 +29,7 @@ class Store {
             throw new Error('Please enter a title and a text')
             
         }
-        const newNote = {title, text, id:uuid()}
+        const newNote = {title, text, id:uuid.v1()}
         return this.getNotes()
         .then((notes) => [...notes, newNote])
         .then((updatedNotes) => this.write(updatedNotes))

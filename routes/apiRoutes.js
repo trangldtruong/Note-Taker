@@ -1,4 +1,4 @@
-const router = require('express').Router;
+const router = require('express').Router();
 const store = require('../db/dbData');
 
 
@@ -13,7 +13,11 @@ router.get('/notes', (req, res) => {
 })
 
 router.post('/notes', (req, res) => {
-
+    store
+    .addNote(req.body)
+    .then((notes) =>  res.json(notes))
+    .catch((err) => res.json(err))
+    
 })
 
-module.exports = router();
+module.exports = router;
